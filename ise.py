@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import math
+
 def fpin(P, i, N):
   return P * (1 + i)**N
 
@@ -28,3 +30,14 @@ def pagin(A, g, i, N):
   if i == g:
     return A * ( (N) / (1 + i))
   return A * ( (1 - (1 + g)**N * (1 + i)**-N) / (i - g))
+
+def goal_seek(f, lower, upper, step):
+  i = lower
+  minimum = math.fabs(f(i))
+  min_i = i
+  while i < upper:
+    if math.fabs(f(i)) < minimum:
+      minimum = math.fabs(f(i))
+      min_i = i
+    i += step
+  return min_i, minimum
